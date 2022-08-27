@@ -3,27 +3,35 @@ package com.example.mvvm.Model;
 import androidx.annotation.NonNull;
 
 public class Counter {
-    Integer mCounter;
+    Integer mValue;
 
     public Counter(){
-        mCounter = 0;
+        mValue = 0;
     }
 
     public void increment(){
-        mCounter++;
+        mValue++;
     }
 
     public void decrement(){
-        mCounter--;
+        mValue--;
     }
 
     public void reset(){
-        mCounter = 0;
+        mValue = 0;
+    }
+
+    public void setValue(Integer value){
+        mValue = value;
+    }
+
+    public Integer getValue() {
+        return mValue;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return mCounter.toString();
+        return mValue.toString();
     }
 }

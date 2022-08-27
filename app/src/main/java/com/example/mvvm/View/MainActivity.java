@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.example.mvvm.Model.Counter;
 import com.example.mvvm.ViewModel.CounterViewModel;
@@ -55,7 +56,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mActivityMainBinding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveCounter();
+            }
+        });
+
+        mActivityMainBinding.btnRetrieve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                retrieveCounter();
+            }
+        });
+
+        mActivityMainBinding.swtStorage.setChecked(mCounterViewModel.getSaveStatus());
+        switchUpdated(mCounterViewModel.getSaveStatus());
+        mActivityMainBinding.swtStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                switchUpdated(b);
+            }
+        });
+
         updateCounter();
+    }
+
+    private void switchUpdated(boolean b){
+        mCounterViewModel.setSaveStatus(b);
+        if(b){
+            mActivityMainBinding.swtStorage.setText("Will save to Shared Preferences");
+        }else{
+            mActivityMainBinding.swtStorage.setText("Will save to Internal Storage");
+        }
     }
 
     private void incrementCounter(){
@@ -72,5 +105,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateCounter(){
         mActivityMainBinding.tvCounter.setText(mCounterViewModel.getCounterValue());
+    }
+
+    private void saveCounter(){
+        mCounterViewModel.save();
+    }
+
+    private void retrieveCounter(){
+        mCounterViewModel.retrieve();
     }
 }

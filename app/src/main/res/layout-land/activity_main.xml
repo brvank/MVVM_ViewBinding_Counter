@@ -9,12 +9,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center">
 
         <TextView
             android:id="@+id/tvCounter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:padding="16dp"
@@ -25,9 +26,9 @@
             tools:text="0"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="center_horizontal">
 
             <Button
@@ -48,16 +49,16 @@
                 android:textStyle="bold"
                 android:text="decrement"/>
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="reset"/>
 
-        <Button
-            android:id="@+id/btnReset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="reset"/>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -71,7 +72,7 @@
         android:text="save"
         android:textColor="#ff00ff00"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_toEndOf="@+id/btnRetrieve"/>
 
     <Button
         android:id="@+id/btnRetrieve"
